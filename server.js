@@ -26,6 +26,17 @@ app.use('/api', require('./routes/misc'));
 // Health check
 app.get('/api/health', (req, res) => res.json({ status: 'OK', message: 'Blood Donor API is running' }));
 
+// ← Add this below health check
+app.get('/api/test-db', async (req, res) => {
+  try {
+    const pool = require('./config/db');
+    const [rows] = await pool.query('SELECT 1+1 as result');
+    res.json({ success: true, message: 'Database connected!' });
+  } catch (err) {
+    res.json({ success: false, error: err.message });
+  }
+});
+
 // 404
 app.use('*', (req, res) => res.status(404).json({ success: false, message: 'Route not found' }));
 
