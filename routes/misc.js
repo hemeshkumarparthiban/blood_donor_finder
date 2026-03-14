@@ -1,0 +1,10 @@
+const express = require('express');
+const router = express.Router();
+const { getPublicCamps, getApprovedTestimonials, submitTestimonial, recordDonation, getMyDonations } = require('../controllers/campController');
+const { protect } = require('../middleware/auth');
+router.get('/camps', getPublicCamps);
+router.get('/testimonials', getApprovedTestimonials);
+router.post('/testimonials', protect, submitTestimonial);
+router.post('/donations', protect, recordDonation);
+router.get('/donations/my', protect, getMyDonations);
+module.exports = router;

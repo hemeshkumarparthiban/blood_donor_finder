@@ -1,0 +1,16 @@
+const express = require('express');
+const router = express.Router();
+const { getDashboard, getAllUsers, toggleUserStatus, deleteUser, getAllRequests, getCamps, createCamp, deleteCamp, getTestimonials, approveTestimonial } = require('../controllers/adminController');
+const { protect, adminOnly } = require('../middleware/auth');
+router.use(protect, adminOnly);
+router.get('/dashboard', getDashboard);
+router.get('/users', getAllUsers);
+router.put('/users/:id/toggle-status', toggleUserStatus);
+router.delete('/users/:id', deleteUser);
+router.get('/requests', getAllRequests);
+router.get('/camps', getCamps);
+router.post('/camps', createCamp);
+router.delete('/camps/:id', deleteCamp);
+router.get('/testimonials', getTestimonials);
+router.put('/testimonials/:id/approve', approveTestimonial);
+module.exports = router;
