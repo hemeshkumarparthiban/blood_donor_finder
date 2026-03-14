@@ -7,7 +7,8 @@ const app = express();
 // Middleware
 app.use(cors({
   origin: ['http://localhost:3000',
-          'https://blood-donor-finder-hazel.vercel.app'],
+          'https://blood-donor-finder-hazel.vercel.app',
+          'https://poor-identity-bali-passing.trycloudflare.com'],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
