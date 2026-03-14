@@ -33,7 +33,15 @@ app.get('/api/test-db', async (req, res) => {
     const [rows] = await pool.query('SELECT 1+1 as result');
     res.json({ success: true, message: 'Database connected!' });
   } catch (err) {
-    res.json({ success: false, error: err.message });
+    res.json({ 
+      success: false, 
+      error: err.message,
+      code: err.code,
+      host: process.env.DB_HOST,
+      port: process.env.DB_PORT,
+      user: process.env.DB_USER,
+      database: process.env.DB_NAME
+    });
   }
 });
 
